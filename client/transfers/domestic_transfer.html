@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-right: 2rem;
+    }
+
+    .transfer-box {
+      width: 400px;
+      background-color: white;
+      padding: 2rem;
+      margin: 0 auto;
+      margin-top: 2rem;
+    }
+
+    .menu-bar {
+      display: flex;
+      justify-content: center;
+      background-color: #2b6cb0;
+      padding: 0.5rem 0;
+    }
+
+    .menu-item {
+      position: relative;
+      color: white;
+      margin: 0 1rem;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 0.5rem;
+      min-width: 160px;
+      z-index: 1;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      color: #333;
+      text-decoration: none;
+      padding: 0.5rem;
+    }
+
+    .menu-item:hover .dropdown-menu {
+      display: block;
+    }
+
+    .user-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 3.5rem;
+      right: 0;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 1rem;
+      min-width: 120px;
+    }
+
+    .user-dropdown-menu a {
+      display: block;
+      color: #333;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+    }
+
+    .user-dropdown {
+      position: relative;
+      display: inline-block;
+      margin-left: 1rem;
+    }
+
+    .user-dropdown-trigger {
+      color: white;
+      cursor: pointer;
+    }
+
+    
+    .lbl {
+            display: block;
+            font-weight: bolder;
+            color: #333;
+            font-size: x-large;
+            text-align: center;
+            text-shadow: #2b6cb0;
+            font: bold;
+        }
+
+
+  </style>
+  <title>HK Bank - Transfers</title>
+</head>
+<body class="bg-gray-900">
+  <header class="bg-gray-700 text-white py-4">
+    <div class="container flex items-center justify-between">
+      <div class="logo-container">
+        <img src="/logo.png" alt="HK Bank Logo" class="w-18 h-12">
+      </div>
+      <div class="flex items-center">
+        <div class="user-dropdown">
+          <span class="user-dropdown-trigger" onclick="toggleUserDropdown()">Kareem</span>
+          <div class="user-dropdown-menu" id="userDropdown">
+            <a href="../../index.html">Logout</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu-bar">
+    <div class="menu-item">
+     <a href="../client_dashboard.html"><span>Dashboard</span></a>
+    </div>
+    <div class="menu-item">
+     <span>Accounts</span>
+      <div class="dropdown-menu">
+        <a href="../accounts/open_account.html">Open New Account</a>
+        <a href="../accounts/close_account.html">Close Account</a>
+      </div>
+    </div>
+    <div class="menu-item">
+       <span>Transfers</span>
+      <div class="dropdown-menu">
+        <a href="../transfers/own_transfer.html">Make Own Transfer</a>
+        <a href="../transfers/internal_transfer.html">Make Internal Transfer</a>
+        <a href="../transfers/domestic_transfer.html">Make Domestic Transfer</a>
+        <a href="../transfers/transfers_history.html">View Transfer History</a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <span>Cards</span>
+      <div class="dropdown-menu">
+        <a href="../cards/credit_card_application.html">Apply For A Credit Card</a>
+        <a href="../cards/pay_credit_cards.html">Pay Credit Card Bill</a>
+        <a href="../cards/stop_credit_cards.html">Stop Credit Card</a>
+        <a href="../cards/redeem_points.html">Redeem Credit Card Points</a>
+        <a href="../cards/view_credit_card_transactions.html">View Credit Card Transactions</a>
+      </div>
+    </div>
+    <div class="menu-item">
+       <span>Loans</span>
+      <div class="dropdown-menu">
+        <a href="../loans/auto_loan_application.html">Apply For An Auto Loan</a>
+        <a href="../loans/personal_loan_application.html">Apply For A Personal Loan</a>
+        <a href="../loans/pay_loans.html">Pay Loan</a>
+        <a href="../loans/view_loan_payments.html">View Loan Layments</a>
+      </div>
+    </div>
+    <div class="menu-item">
+        <span>Bills</span>
+      <div class="dropdown-menu">
+        <a href="../bills/view_bills.html">View Bills</a>
+        <a href="../bills/pay_bills.html">Pay Bill</a>
+      </div>
+    </div>
+    <div class="menu-item">
+       <span>Reports</span>
+      <div class="dropdown-menu">
+        <a href="../reports/view_reports.html">View Reports</a>
+        <a href="../reports/make_report.html">Report A Technical Issue</a>
+      </div>
+    </div>
+    <div class="menu-item">
+        <span>Reminders</span>
+        <div class="dropdown-menu">
+          <a href="../reminders/view_reminders.html">View Reminders</a>
+          <a href="../reminders/add_reminder.html">Add Reminder</a>
+        </div>
+      </div>
+  </div>
+
+  <main class="py-10">
+    <div class="container">
+      <div class="transfer-box">
+        <h2 class="lbl">Domestic Transfer</h2>
+        <br>
+        <form>
+          <div class="mb-4">
+            <label class="block text-black text-sm mb-2" for="sourceAccount">Enter Source Account Number</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="sourceAccount" type="text" placeholder="Source Account Number">
+          </div>
+          <div class="mb-4">
+            <label class="block text-black text-sm mb-2" for="destinationAccount">Enter Destination Account Number</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="destinationAccount" type="text" placeholder="Destination Account Number">
+          </div>
+          <div class="mb-4">
+            <label class="block text-black text-sm mb-2" for="bank_name">Enter Bank Name</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="bank_name" type="text" placeholder="Bank Name">
+          </div>
+          <div class="mb-4">
+            <label class="block text-black text-sm mb-2" for="name">Enter Benefeciary Name</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Benefeciary Name">
+          </div>
+          <div class="mb-4">
+            <label class="block text-black text-sm mb-2" for="email">Enter Benefeciary E-Mail</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Benefeciary E-Mail">
+          </div>
+          <div class="mb-4">
+            <label class="block text-black text-sm mb-2" for="transferAmount">Enter Transfer Amount</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="transferAmount" type="text" placeholder="Transfer Amount">
+          </div>
+          <div class="mb-4">
+            <label class="block text-black text-sm mb-2" for="transferCurrency">Choose Transfer Currency</label>
+            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="transferCurrency">
+              <option value="EGP">EGP</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </div>
+          <button type="button" onclick="makeTransfer()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Make Transfer</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-700 text-white py-3">
+    <div class="container text-center">
+      <p class="text-sm">&copy; 2023 HK Bank. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleUserDropdown() {
+      const userDropdown = document.getElementById('userDropdown');
+      userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
+    }
+  
+    function makeTransfer() {
+      alert("Successful transaction!");
+    }
+  </script>
+  
+
+</body>
+</html>
