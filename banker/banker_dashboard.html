@@ -14,6 +14,7 @@
             margin-right: 2rem;
         }
 
+   
         .dashboard-box {
             height: 150px;
             background-color: #2b6cb0;
@@ -25,7 +26,9 @@
             font-size: 16px;
             font-weight: bold;
             margin: 0.5rem;
+            width: 670px;
         }
+
 
         .menu-bar {
             display: flex;
@@ -137,10 +140,56 @@
         .txtw {
             color: white
         }
+
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .modal h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .modal p {
+            margin-bottom: 20px;
+        }
+
+        .modal button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal button:hover {
+            background-color: #0056b3;
+        }
+
+        .modal button:focus {
+            outline: none;
+        }
     </style>
 
 
-    <title>HK Bank - View Loan Payments</title>
+    <title>HK Bank - Banker Dashboard</title>
 </head>
 
 <body class="bg-gray-900">
@@ -154,7 +203,6 @@
                     <span class="user-dropdown-trigger" onclick="toggleUserDropdown()">Kareem</span>
                     <div class="dropdown-menu" id="userDropdown">
                         <a href="../../index.html">Logout</a>
-
                     </div>
                 </div>
             </div>
@@ -162,128 +210,66 @@
     </header>
     <div class="menu-bar">
         <div class="menu-item">
-         <a href="../client_dashboard.html"><span>Dashboard</span></a>
+         <a href="banker_dashboard.html"><span>Dashboard</span></a>
         </div>
+        <div class="menu-item">
+            <span>Clients</span>
+             <div class="dropdown-menu">
+               <a href="view_clients.html">View Clients</a>
+               <a href="block_client.html">Block Client</a>
+             </div>
+           </div>
         <div class="menu-item">
          <span>Accounts</span>
           <div class="dropdown-menu">
-            <a href="../accounts/open_account.html">Open New Account</a>
-            <a href="../accounts/close_account.html">Close Account</a>
-          </div>
-        </div>
-        <div class="menu-item">
-           <span>Transfers</span>
-          <div class="dropdown-menu">
-            <a href="../transfers/own_transfer.html">Make Own Transfer</a>
-            <a href="../transfers/internal_transfer.html">Make Internal Transfer</a>
-            <a href="../transfers/domestic_transfer.html">Make Domestic Transfer</a>
-            <a href="../transfers/transfers_history.html">View Transfer History</a>
+            <a href="view_accounts.html">View Accounts</a>
+            <a href="view_open_apps.html">View Opening Account Appliactions</a>
+            <a href="view_close_apps.html">View Closing Account Appliactions</a>
           </div>
         </div>
         <div class="menu-item">
           <span>Cards</span>
           <div class="dropdown-menu">
-            <a href="../cards/credit_card_application.html">Apply For A Credit Card</a>
-            <a href="../cards/pay_credit_cards.html">Pay Credit Card Bill</a>
-            <a href="../cards/stop_credit_cards.html">Stop Credit Card</a>
-            <a href="../cards/redeem_points.html">Redeem Credit Card Points</a>
-            <a href="../cards/view_credit_card_transactions.html">View Credit Card Transactions</a>
+            <a href="view_credit_cards.html">View Credit Cards</a>
+            <a href="view_credit_card_application.html">View Credit Card Applications</a>
+            <a href="stop_requests.html">View Credit Card Stop Requests</a>
           </div>
         </div>
         <div class="menu-item">
            <span>Loans</span>
           <div class="dropdown-menu">
-            <a href="../loans/auto_loan_application.html">Apply For An Auto Loan</a>
-            <a href="../loans/personal_loan_application.html">Apply For A Personal Loan</a>
-            <a href="../loans/pay_loans.html">Pay Loan</a>
-            <a href="../loans/view_loan_payments.html">View Loan Layments</a>
+            <a href="view_loans.html">View Loans</a>
+            <a href="view_loan_applications.html">View Loan Applications</a>
           </div>
         </div>
-        <div class="menu-item">
-            <span>Bills</span>
-          <div class="dropdown-menu">
-            <a href="../bills/view_bills.html">View Bills</a>
-            <a href="../bills/pay_bills.html">Pay Bill</a>
-          </div>
-        </div>
-        <div class="menu-item">
-           <span>Reports</span>
-          <div class="dropdown-menu">
-            <a href="../reports/view_reports.html">View Reports</a>
-            <a href="../reports/make_report.html">Report A Technical Issue</a>
-          </div>
-        </div>
-        <div class="menu-item">
-            <span>Reminders</span>
-            <div class="dropdown-menu">
-              <a href="../reminders/view_reminders.html">View Reminders</a>
-              <a href="../reminders/add_reminder.html">Add Reminder</a>
-            </div>
-          </div>
       </div>
+
     <main class="py-10">
-        <class="container">
+        <div class="container">
             <section>
                 <div class="txtw">
-                    <h2 class="text-2xl font-bold mt-8 mb-4">Loan Payment History</h2>
+                    <h2 class="text-2xl font-bold mt-8 mb-4">Banker Dashboard</h2>
                 </div>
-                <table class="transactions-table">
-                    <thead>
-                        <tr>
-                            <th>Loan Number</th>
-                            <th>Loan Type</th>
-                            <th>Amount</th>
-                            <th>Currency</th>
-                            <th>Payment Date</th>
-                            <th>Balance</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1234567891234567</td>
-                            <td>Personal</td>
-                            <td>1000</td>
-                            <td>EGP</td>
-                            <td>2023-05-20</td>
-                            <td>2450000</td>
-                        </tr>
-                        <td>1234567891234567</td>
-                        <td>Personal</td>
-                        <td>1000</td>
-                        <td>EGP</td>
-                        <td>2023-05-20</td>
-                        <td>2450000</td>
-                        </tr>
-                        <td>1234567891234567</td>
-                        <td>Personal</td>
-                        <td>1000</td>
-                        <td>EGP</td>
-                        <td>2023-05-20</td>
-                        <td>2450000</td>
-                        </tr>
-                        <td>1234567891234567</td>
-                        <td>Personal</td>
-                        <td>1000</td>
-                        <td>EGP</td>
-                        <td>2023-05-20</td>
-                        <td>2450000</td>
-                        </tr>
-                        <td>1234567891234567</td>
-                        <td>Personal</td>
-                        <td>1000</td>
-                        <td>EGP</td>
-                        <td>2023-05-20</td>
-                        <td>2450000</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="pagination">
+                <div class="flex justify-center">
+                    <div class="dashboard-box">
+                        <p class="text-2xl">Clients <br> 1265</p>
+                    </div>
+                    <div class="dashboard-box">
+                        <p class="text-2xl">Accounts <br> 2000</p>
+                    </div>
+                    <div class="dashboard-box">
+                        <p class="text-2xl">Cards <br> 1976</p>
+                    </div>
+                    <div class="dashboard-box">
+                        <p class="text-2xl">Loans <br> 124</p>
+                    </div>
+                    <div class="dashboard-box">
+                        <h3 class="text-2xl">Unreviewed Applications <br> 99</h3>
+                    </div>
                 </div>
             </section>
-            </div>
+        </div>
     </main>
-
 
     <footer class="bg-gray-700 text-white py-3">
         <div class="container text-center">

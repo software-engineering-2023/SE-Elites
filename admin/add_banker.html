@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-right: 2rem;
+        }
+
+        .dashboard-box {
+            height: 150px;
+            background-color: #2b6cb0;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0.5rem;
+        }
+
+        .transfer-box {
+      width: 400px;
+      background-color: white;
+      padding: 2rem;
+      margin: 0 auto;
+      margin-top: 2rem;
+    }
+
+        .menu-bar {
+            display: flex;
+            justify-content: center;
+            background-color: #2b6cb0;
+            padding: 0.5rem 0;
+        }
+
+        .menu-item {
+            position: relative;
+            color: white;
+            margin: 0 1rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 0.5rem;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+
+        .menu-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .user-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 3.5rem;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 1rem;
+            min-width: 120px;
+        }
+
+        .user-dropdown-menu a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 1rem;
+        }
+
+        .user-dropdown-trigger {
+            color: white;
+            cursor: pointer;
+        }
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .pagination a {
+            color: #2b6cb0;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+
+        .pagination .current {
+            color: white;
+            background-color: #2b6cb0;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #F3F4F6;
+            color: #111827;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #D1D5DB;
+        }
+
+        th {
+            background-color: #1F2937;
+            color: #F9FAFB;
+        }
+
+        .txtw {
+            color: white
+        }
+        .lbl {
+      display: block;
+      font-weight: bolder;
+      color: #333;
+      font-size: x-large;
+      text-align: center;
+      text-shadow: #2b6cb0;
+      font: bold;
+    }
+
+    .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .modal h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .modal p {
+            margin-bottom: 20px;
+        }
+
+        .modal button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal button:hover {
+            background-color: #0056b3;
+        }
+
+        .modal button:focus {
+            outline: none;
+        }
+
+    </style>
+
+
+    <title>HK Bank - Add Banker</title>
+</head>
+
+<body class="bg-gray-900">
+    <header class="bg-gray-700 text-white py-4">
+        <div class="container flex items-center justify-between">
+            <div class="logo-container">
+                <img src="/logo.png" alt="HK Bank Logo" class="w-18 h-12">
+            </div>
+            <div class="flex items-center">
+                <div class="user-dropdown">
+                    <span class="user-dropdown-trigger" onclick="toggleUserDropdown()">Kareem</span>
+                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="../../index.html">Logout</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="menu-bar">
+        <div class="menu-item">
+            <a href="admin_dashboard.html"><span>Dashboard</span></a>
+        </div>
+        <div class="menu-item">
+            <span>Bankers</span>
+             <div class="dropdown-menu">
+               <a href="view_bankers.html">View Bankers</a>
+               <a href="add_banker.html">Add Banker</a>
+               <a href="block_banker.html">Block Banker</a>
+             </div>
+           </div>
+        <div class="menu-item">
+         <a href="make_announcement.html"><span>Make Announcement</span></a>
+        </div>
+        <div class="menu-item">
+            <a href="view_reports.html"><span>View Reports</span></a>
+        </div>
+      </div>
+
+    <main class="py-10">
+        <div class="container">
+                  <div class="transfer-box">
+                    <h2 class="lbl">Add Banker</h2>
+                    <br>
+                    <form>
+                      <div class="mb-4">
+                        <label class="block text-black text-sm mb-2" for="name">Banker Name</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name">
+                      </div>
+                      <div class="mb-4">
+                        <label class="block text-black text-sm mb-2" for="address">Banker Phone Number</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="address" type="text" placeholder="Phone">
+                      </div>
+                      <div class="mb-4">
+                        <label class="block text-black text-sm mb-2" for="creditLimit">Banker E-Mail</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="creditLimit" type="text" placeholder="E-Mail">
+                      </div>
+                      <div class="mb-4">
+                        <label class="block text-black text-sm mb-2" for="printedName">Banker Username</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="printedName" type="text" placeholder="Username">
+                      </div>
+                      <div class="mb-4">
+                        <label class="block text-black text-sm mb-2" for="printedName">Banker Password</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="printedName" type="password" placeholder="Password">
+                      </div>
+                      <button type="button" onclick="submitApplication()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add</button>
+                    </form>
+                  </div>           
+            </div>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <p id="modal-message"></p>
+                    <button class="exit-button" onclick="closeModal()">X</button>
+                </div>
+            </div>
+    </main>
+
+
+    <footer class="bg-gray-700 text-white py-3">
+        <div class="container text-center">
+            <p class="text-sm">&copy; 2023 HK Bank. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleUserDropdown() {
+            const userDropdown = document.getElementById('userDropdown');
+            userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function submitApplication() {
+            const modal = document.getElementById('modal');
+            const modalMessage = document.getElementById('modal-message');
+            modalMessage.textContent = `Banker Added!`;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

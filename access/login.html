@@ -17,17 +17,13 @@
   <title>HK Bank - Login</title>
   <script>
     function redirectToClientDashboard() {
-      window.location.href = "../client/client_dashboard.html";
-    }
-  </script>
-  <script>
-    function redirectToBankerDashboard() {
-      window.location.href = "banker_dashboard.html";
-    }
-  </script>
-  <script>
-    function redirectToAdminDashboard() {
-      window.location.href = "admin_dashboard.html";
+      const username = document.getElementById('username').value;
+      if(username == "client")
+        window.location.href = "../client/client_dashboard.html";
+      else if(username == "banker")
+        window.location.href = "../banker/banker_dashboard.html";
+      else if(username == "admin")
+        window.location.href = "../admin/admin_dashboard.html";
     }
   </script>
 </head>
