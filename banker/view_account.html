@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-right: 2rem;
+        }
+
+        .dashboard-box {
+            height: 150px;
+            background-color: #2b6cb0;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0.5rem;
+        }
+
+        .menu-bar {
+            display: flex;
+            justify-content: center;
+            background-color: #2b6cb0;
+            padding: 0.5rem 0;
+        }
+
+        .menu-item {
+            position: relative;
+            color: white;
+            margin: 0 1rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 0.5rem;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+
+        .menu-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .user-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 3.5rem;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 1rem;
+            min-width: 120px;
+        }
+
+        .user-dropdown-menu a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 1rem;
+        }
+
+        .user-dropdown-trigger {
+            color: white;
+            cursor: pointer;
+        }
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .pagination a {
+            color: #2b6cb0;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+
+        .pagination .current {
+            color: white;
+            background-color: #2b6cb0;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #F3F4F6;
+            color: #111827;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #D1D5DB;
+        }
+
+        th {
+            background-color: #1F2937;
+            color: #F9FAFB;
+        }
+
+        .txtw {
+            color: white
+        }
+
+        td a {
+            width: 100%;
+            display: block;
+        }
+
+    </style>
+
+
+    <title>HK Bank - View Account</title>
+</head>
+
+<body class="bg-gray-900">
+    <header class="bg-gray-700 text-white py-4">
+        <div class="container flex items-center justify-between">
+            <div class="logo-container">
+                <img src="/logo.png" alt="HK Bank Logo" class="w-18 h-12">
+            </div>
+            <div class="flex items-center">
+                <div class="user-dropdown">
+                    <span class="user-dropdown-trigger" onclick="toggleUserDropdown()">Kareem</span>
+                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="../../index.html">Logout</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="menu-bar">
+        <div class="menu-item">
+         <a href="banker_dashboard.html"><span>Dashboard</span></a>
+        </div>
+        <div class="menu-item">
+            <span>Clients</span>
+             <div class="dropdown-menu">
+               <a href="view_clients.html">View Clients</a>
+               <a href="block_client.html">Block Client</a>
+             </div>
+           </div>
+        <div class="menu-item">
+         <span>Accounts</span>
+          <div class="dropdown-menu">
+            <a href="view_accounts.html">View Accounts</a>
+            <a href="view_open_apps.html">View Opening Account Appliactions</a>
+            <a href="view_close_apps.html">View Closing Account Appliactions</a>
+          </div>
+        </div>
+        <div class="menu-item">
+          <span>Cards</span>
+          <div class="dropdown-menu">
+            <a href="view_credit_cards.html">View Credit Cards</a>
+            <a href="view_credit_card_application.html">View Credit Card Applications</a>
+            <a href="stop_requests.html">View Credit Card Stop Requests</a>
+          </div>
+        </div>
+        <div class="menu-item">
+           <span>Loans</span>
+          <div class="dropdown-menu">
+            <a href="view_loans.html">View Loans</a>
+            <a href="view_loan_applications.html">View Loan Applications</a>
+          </div>
+        </div>
+      </div>
+
+    <main class="py-10">
+        <class="container">
+            <section>
+                <div class="txtw">
+                    <h2 class="text-2xl font-bold mt-8 mb-4">Account Details</h2>
+                </div>
+                <table class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Client Name</th>
+                            <th>Account Number</th>
+                            <th>Account Type</th>
+                            <th>Balance</th>
+                            <th>Currency</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kareem Ashraf</td>
+                            <td>1234567891234567</td>
+                            <td>Current</td>
+                            <td>100000</td>
+                            <td>USD</td>
+                            <td>Active</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="txtw">
+                    <h2 class="text-2xl font-bold mt-8 mb-4">Account Transfer History</h2>
+                </div>
+                <table class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Accout Number</th>
+                            <th>Destination Account Number</th>
+                            <th>Transfer Amount</th>
+                            <th>Currency</th>
+                            <th>Transfer Type</th>
+                            <th>Bank Name</th>
+                            <th>Transfer Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1234567891234567</td>
+                            <td>9876543212345678</td>
+                            <td>1000</td>
+                            <td>USD</td>
+                            <td>Internal</td>
+                            <td>HK</td>
+                            <td>2023-05-20</td>
+                        </tr>
+                        <tr>
+                            <td>1234567891234567</td>
+                            <td>9876543212345678</td>
+                            <td>1000</td>
+                            <td>USD</td>
+                            <td>Domestic</td>
+                            <td>XYZ</td>
+                            <td>2023-05-20</td>
+                        </tr>
+                        <tr>
+                            <td>1234567891234567</td>
+                            <td>9876543212345678</td>
+                            <td>1000</td>
+                            <td>USD</td>
+                            <td>Domestic</td>
+                            <td>XYZ</td>
+                            <td>2023-05-20</td>
+                        </tr><tr>
+                            <td>1234567891234567</td>
+                            <td>9876543212345678</td>
+                            <td>1000</td>
+                            <td>USD</td>
+                            <td>Domestic</td>
+                            <td>XYZ</td>
+                            <td>2023-05-20</td>
+                        </tr><tr>
+                            <td>1234567891234567</td>
+                            <td>9876543212345678</td>
+                            <td>1000</td>
+                            <td>USD</td>
+                            <td>Domestic</td>
+                            <td>XYZ</td>
+                            <td>2023-05-20</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="txtw">
+                    <h2 class="text-2xl font-bold mt-8 mb-4">Account Transaction History</h2>
+                </div>
+                <table class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Transaction Details</th>
+                            <th>Account Number</th>
+                            <th>Payment Amount</th>
+                            <th>Currency</th>
+                            <th>Payment Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Electricity Bill</td>
+                            <td>1234567891234567</td>
+                            <td>1000</td>
+                            <td>EGP</td>
+                            <td>2023-05-20</td>
+                        </tr>
+                        <tr>
+                            <td>Gas Bill</td>
+                            <td>1234567891234567</td>
+                            <td>1000</td>
+                            <td>EGP</td>
+                            <td>2023-05-20</td>
+                        </tr>
+                        <tr>
+                            <td>Electricity Bill</td>
+                            <td>1234567891234567</td>
+                            <td>1000</td>
+                            <td>EGP</td>
+                            <td>2023-05-20</td>
+                        </tr> <tr>
+                            <td>Electricity Bill</td>
+                            <td>1234567891234567</td>
+                            <td>1000</td>
+                            <td>EGP</td>
+                            <td>2023-05-20</td>
+                        </tr> <tr>
+                            <td>Electricity Bill</td>
+                            <td>1234567891234567</td>
+                            <td>1000</td>
+                            <td>EGP</td>
+                            <td>2023-05-20</td>
+                        </tr> <tr>
+                            <td>Electricity Bill</td>
+                            <td>1234567891234567</td>
+                            <td>1000</td>
+                            <td>EGP</td>
+                            <td>2023-05-20</td>
+                      
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="txtw">
+                    <h2 class="text-2xl font-bold mt-8 mb-4">Account Credit Cards</h2>
+                </div>
+
+                <table class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Card Number</th>
+                            <th>Balance</th>
+                            <th>Currency</th>
+                            <th>Credit Limit</th>
+                            <th>Expiry Date</th>
+                            <th>Status</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1234567891234567</td>
+                            <td>50123</td>
+                            <td>USD</td>
+                            <td>200000</td>
+                            <td>31-12-2025</td>
+                            <td>Active</td>
+                            <td><a style="color:#334d86; font-weight: bolder;" href="view_card.html">View Card</a></td>
+                        </tr>
+                        <tr>
+                            <td>1234567891234567</td>
+                            <td>50123</td>
+                            <td>USD</td>
+                            <td>200000</td>
+                            <td>31-12-2025</td>
+                            <td>Stopped</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+                </div>
+            </section>
+            </div>
+    </main>
+
+
+    <footer class="bg-gray-700 text-white py-3">
+        <div class="container text-center">
+            <p class="text-sm">&copy; 2023 HK Bank. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleUserDropdown() {
+            const userDropdown = document.getElementById('userDropdown');
+            userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+
+</html>

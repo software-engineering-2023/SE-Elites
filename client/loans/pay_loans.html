@@ -98,8 +98,54 @@
       font: bold;
     }
 
+       
+    .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .modal h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .modal p {
+            margin-bottom: 20px;
+        }
+
+        .modal button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal button:hover {
+            background-color: #0056b3;
+        }
+
+        .modal button:focus {
+            outline: none;
+        }
+
   </style>
-  <title>HK Bank - Pay Credit Card Bill</title>
+  <title>HK Bank - Pay Loan</title>
 </head>
 <body class="bg-gray-900">
   <header class="bg-gray-700 text-white py-4">
@@ -215,6 +261,12 @@
         </form>
       </div>
     </div>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+          <p id="modal-message"></p>
+          <button class="exit-button" onclick="closeModal()">X</button>
+      </div>
+  </div>
   </main>
 
   <footer class="bg-gray-700 text-white py-3">
@@ -248,8 +300,14 @@
       const cardNumber = document.getElementById('cardNumber').value;
       const loanNumber = document.getElementById('loanNumber').value;
       const paymentAmount = document.getElementById('paymentAmount').value;
-      alert('Payment successful!');
-    }
+      const modal = document.getElementById('modal');
+            const modalMessage = document.getElementById('modal-message');
+      modalMessage.textContent = `Payment Submitted Successfull`;
+      modal.style.display = 'block';    }
+    function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
   </script>
 </body>
 </html>
