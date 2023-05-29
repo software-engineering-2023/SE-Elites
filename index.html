@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-right: 2rem;
+    }
+  </style>
+  <title>HK Bank</title>
+</head>
+<body class="bg-gray-900">
+  <header class="bg-gray-700 text-white py-4">
+    <div class="container">
+      <div class="logo-container">
+        <img src="logo.png" alt="HK Bank Logo" class="w-18 h-12">
+      </div>
+    </div>
+  </header>
+
+  <main class="py-10">
+    <div class="container mt-10">
+      <div class="text-center">
+        <h2 class="text-3xl font-semibold mb-4 text-gray-300">Welcome to HK Bank Online Banking</h2>
+        <p class="text-lg text-gray-300">Experience the convenience and security of managing your finances online with HK Bank.</p>
+      </div>
+      <div class="flex justify-center mt-8">
+        <div class="w-1/2">
+          <h3 class="text-xl font-semibold mb-2 text-gray-300">Key Features:</h3>
+          <ul class="list-disc list-inside">
+            <li class="text-gray-300 hover:text-white hover:underline">Secure access to your accounts 24/7</li>
+            <li class="text-gray-300 hover:text-white hover:underline">View account balances and transaction history</li>
+            <li class="text-gray-300 hover:text-white hover:underline">Transfer funds between accounts</li>
+            <li class="text-gray-300 hover:text-white hover:underline">Pay bills and manage payments</li>
+            <li class="text-gray-300 hover:text-white hover:underline">Set up account alerts and notifications</li>
+            <li class="text-gray-300 hover:text-white hover:underline">Apply for loans and credit cards</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container text-center mt-8">
+      <div class="mb-4">
+        <a href="access/login.html" class="bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded">Login</a>
+      </div>
+      <div>
+        <br>
+        <p class="text-gray-300 mb-1">New to online banking?</p>
+        <br>
+        <a href="access/registration.html" class="bg-blue-300 hover:bg-blue-400 text-gray-800 font-semibold py-2 px-4 rounded">
+          <span class="text-white">Become a customer</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-700 text-white py-3">
+    <div class="container text-center">
+      <p class="text-sm">&copy; 2023 HK Bank. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
